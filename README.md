@@ -4,10 +4,10 @@
 The GYM Management System is a web application designed to digitize gym receipts and notifications, reducing the risk of misplaced receipts and improving communication between gym owners and members.
 
 ## Technologies Used
-- HTML
-- CSS
-- JavaScript
-- Firebase
+
+- **JavaScript**: For frontend development
+- **HTML/CSS**: For webpage structure and styling
+- **Firebase**: For database
 
 ## Installation and Setup
 1. Clone the repository:
