@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard - GYM Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .notification-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .notification-list li {
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Member Dashboard</h1>
+
+        <div class="section" id="bill-receipts">
+            <h2>View Bill Receipts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="bill-receipts-body">
+                    <!-- Bill receipts will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="bill-notifications">
+            <h2>View Bill Notifications</h2>
+            <ul class="notification-list" id="notification-list">
+                <!-- Notifications will be dynamically populated here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for demonstration purposes
+        const billReceipts = [
+            { date: '2024-07-01', amount: '₹500', description: 'Monthly gym fee' },
+            { date: '2024-06-01', amount: '₹500', description: 'Monthly gym fee' }
+        ];
+
+        const notifications = [
+            { date: '2024-07-01', message: 'Your gym bill for July has been generated.' },
+            { date: '2024-06-01', message: 'Your gym bill for June has been generated.' }
+        ];
+
+        // Populate bill receipts table
+        const billReceiptsBody = document.getElementById('bill-receipts-body');
+        billReceipts.forEach(receipt => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${receipt.date}</td>
+                <td>${receipt.amount}</td>
+                <td>${receipt.description}</td>
+            `;
+            billReceiptsBody.appendChild(row);
+        });
+
+        // Populate notifications list
+        const notificationList = document.getElementById('notification-list');
+        notifications.forEach(notification => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <strong>${notification.date}:</strong> ${notification.message}
+            `;
+            notificationList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

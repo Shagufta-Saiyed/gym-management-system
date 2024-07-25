@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>GymConnect</title>
+
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <nav>
+      <div class="nav__header">
+        <div class="nav__logo">
+          <a href="#"><img src="assets/logo.png" alt="logo" />GymConnect</a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <span><i class="ri-menu-line"></i></span>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li class="link"><a href="#home">Home</a></li>
+        <li class="link"><a href="#about">About Us</a></li>
+        <!-- <li class="link"><a href="#pricing">Pricing</a></li> -->
+
+        <!-- <li class="link"><a href="#client">Feedbacks</a></li> -->
+
+        <li class="link"><a href="login.html" class="btn">Login</a></li>
+
+        <li class="link"><a href="#contact" class="btn">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="section__container header__container" id="home">
+      <div class="header__image">
+        <img src="assets/header.png" alt="header" />
+      </div>
+      <div class="header__content">
+        <h4>Train Smart,</h4>
+        <h1 class="section__header"> Live Strong</h1>
+        <p>
+          "Empowering you with innovative training techniques and holistic health solutions for a stronger, more fulfilling life."
+        </p>
+        <div class="header__btn">
+          <!-- <button class="btn">Join Today</button> -->
+          <a href="login.html" class="btn">Join Today</a></li>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section__container about__container" id="about">
+    <div class="about__image">
+      <img src="assets/about.png" alt="">
+    </div>
+    <div class="about__content">
+      <h2 class="section__header">About Us</h2>
+      <p class="section__description">
+        At GymConnect, our mission is to transform fitness journeys through a commitment to holistic health and well-being. 
+        We believe that true strength lies not in mere numbers or physical power, but in the dedication to nurturing both body and mind.
+        Our motto, "Train Smart, Live Strong," reflects our belief that intelligent training and balanced living pave the way to a healthier, more fulfilling life.
+        We prioritize health and fitness over tangible gains, focusing on long-term well-being rather than short-term results. 
+        Our approach is designed to help you achieve sustainable progress and cultivate a lifestyle that celebrates wellness and vitality.
+        Join us at GymConnect, where we empower you to reach your fitness goals while embracing a philosophy that values enduring health and true strength above all else.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="section__container pricing__container" id="pricing">
+    <h2 class="section__header">Our Pricing</h2>
+    <p>
+      Our pricing plan comes with various membership tiers, each tailored to
+      cater to different preferences and fitness aspirations.
+    </p>
+    <div class="card">
+      <h3>Basic Package</h3>
+      <h1>30 Day in ₹599</h1>
+      <p>No Personal Trainer</p>
+      <p>Valid for 30 Days</p>
+      <p>Full Day valid</p>
+      <p>Access to all gym facilities</p>
+      <p>24/7 support and assistance</p>
+      <button>Buy Plan</button>
+    </div>
+
+    <div class="card">
+      <h3>Premium Package</h3>
+      <h1>30 Day in ₹899</h1>
+      <p> Personal Trainer</p>
+      <p>Valid for 30 Days</p>
+      <p>Full Day valid</p>
+      <p>Access to all gym facilities</p>
+      <p>24/7 support and assistance</p>
+      <button>Buy Plan</button>
+    </div>
+
+    <div class="card">
+      <h3>Diamond Package</h3>
+      <h1>30 Day in ₹1199</h1>
+      <p>1 Week Personal Trainer</p>
+      <p>Valid for 30 Days</p>
+      <p>Full Day valid</p>
+      <p>Access to all gym facilities</p>
+      <p>24/7 support and assistance</p>
+      <button>Buy Plan</button>
+    </div>
+  </section>
+
+  <section class="section__container nutrition" id="nutrition">
+    <h2 class="section__header">Nutrition Tips and Healthy Recipes</h2>
+    <p class="section__description">
+      Nutrition plays a crucial role in complementing your workout routine and achieving your fitness goals.Here are
+      some detailed nutrition tips to help you optimize your performance and recovery.</p>
+    <br>
+    <a href="tips.html" class="btn">Explore Our Healthy Recipes</a></li>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section__container" id="contact">
+    <h2>Contact Us</h2>
+    <br>
+    <div class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235013.7484278547!2d72.4149279300758!3d23.020474102199575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1721911953121!5m2!1sen!2sin"
+       width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"></iframe>      
+    </div>
+    <div class="contact-info">
+      <a href="tel:+1234567890">Phone: 9876543210</a>
+      <a href="mailto:gymconnect@gmail.com">Email: gymconnect@gmail.com.com</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="section__container footer__container">
+      <div class="footer__col">
+        <div class="footer__logo">
+          <a href="#"><img src="assets/logo.png" alt="logo" />GymConnect</a>
+        </div>
+        <p>
+          Take the first step towards a healthier, stronger you with our
+          unbeatable pricing plans. Let's sweat, achieve, and conquer
+          together!
+        </p>
+        <div class="footer__socials">
+          <a href="#"><i class="ri-facebook-fill"></i></a>
+          <a href="#"><i class="ri-instagram-line"></i></a>
+          <a href="#"><i class="ri-twitter-fill"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <div class="footer__links">
+          <a href="#">Business</a>
+          <a href="#">Franchise</a>
+          <a href="#">Partnership</a>
+          <a href="#">Network</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>About Us</h4>
+        <div class="footer__links">
+          <a href="#">Blogs</a>
+          <a href="#">Security</a>
+          <a href="#">Careers</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <div class="footer__links">
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">BMI Calculator</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bar">
+      Copyright © 2024. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="main.js"></script>
+
+  <script src="firebase-config.js"></script>
+
+</body>
+
+</html>

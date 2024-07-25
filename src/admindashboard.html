@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - GYM Management System</title>
+    <style>
+        /* Basic reset for margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #007bff;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav__links {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .nav__links li {
+            margin: 0 15px;
+        }
+
+        .nav__links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .nav__links a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .dashboard-section {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .dashboard-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .dashboard-section button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-section button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard-section">
+            <div class="card">
+                <h3>Add Member</h3>
+                <button onclick="showAddMember()">Add</button>
+            </div>
+            <div class="card">
+                <h3>Update/Delete Members</h3>
+                <button onclick="showUpdateDeleteMember()">Update/Delete</button>
+            </div>
+            <div class="card">
+                <h3>Create Bills</h3>
+                <button onclick="showCreateBills()">Create</button>
+            </div>
+            <div class="card">
+                <h3>Assign Fee Package</h3>
+                <button onclick="showAssignFeePackage()">Assign</button>
+            </div>
+            <div class="card">
+                <h3>Assign Notification</h3>
+                <button onclick="showAssignNotification()">Assign</button>
+            </div>
+            <div class="card">
+                <h3>Export Report</h3>
+                <button onclick="showExportReport()">Export</button>
+            </div>
+            <div class="card">
+                <h3>Supplement Store</h3>
+                <button onclick="showSupplementStore()">View</button>
+            </div>
+            <div class="card">
+                <h3>Diet Details</h3>
+                <button onclick="showDietDetails()">View</button>
+            </div>
+        </div>
+
+        <div class="form-section" id="form-section"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 GYM Management System. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script src="firebaseoperations.js"></script>
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKkgiDLBqSP0LQz-0tMbvHGU0C_ucDAc0",
+            authDomain: "gym-firebase-fa150.firebaseapp.com",
+            projectId: "gym-firebase-fa150",
+            storageBucket: "gym-firebase-fa150.appspot.com",
+            messagingSenderId: "1022230040457",
+            appId: "1:1022230040457:web:98edd211be8232bbc8db58"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Authentication check
+        auth.onAuthStateChanged(user => {
+            if (!user) {
+                window.location.href = 'login.html'; // Redirect to login if not authenticated
+            }
+        });
+
+        document.getElementById('logout').addEventListener('click', () => {
+            auth.signOut().then(() => {
+                window.location.href = 'login.html'; // Redirect to login on logout
+            });
+        });
+
+
+
+
+        // Show Add Member Section
+        function showAddMember() {
+            // Replace with actual implementation to show Add Member form
+            document.querySelector('.dashboard-section').innerHTML = `
+                <h2>Add Member</h2>
+                <form id="add-member-form">
+                    <label for="member-name">Name:</label>
+                    <input type="text" id="member-name" name="name" required>
+                    <label for="member-email">Email:</label>
+                    <input type="email" id="member-email" name="email" required>
+                    <label for="member-phone">Phone:</label>
+                    <input type="text" id="member-phone" name="phone" required>
+                    <button type="submit">Add Member</button>
+                </form>
+            `;
+
+            // Add event listener to handle form submission
+            document.getElementById('add-member-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('member-name').value;
+                const email = document.getElementById('member-email').value;
+                const phone = document.getElementById('member-phone').value;
+                addMember(name, email, phone);
+            });
+        }
+
+        // Show Update/Delete Members Section
+        function showUpdateDeleteMember() {
+            // Replace with actual implementation to show Update/Delete Members form
+            document.querySelector('.dashboard-section').innerHTML = `
+                <h2>Update/Delete Members</h2>
+                <form id="update-delete-member-form">
+                    <label for="member-id">Member ID:</label>
+                    <input type="text" id="member-id" name="id" required>
+                    <button type="button" onclick="fetchMember()">Fetch Member</button>
+                    <div id="member-details"></div>
+                    <button type="button" onclick="deleteMember()">Delete Member</button>
+                </form>
+            `;
+        }
+
+        // Show Create Bills Section
+        function showCreateBills() {
+            // Replace with actual implementation to show Create Bills form
+            document.querySelector('.dashboard-section').innerHTML = `
+                <h2>Create Bills</h2>
+                <form id="create-bill-form">
+                    <label for="member-id-bill">Member ID:</label>
+                    <input type="text" id="member-id-bill" name="member-id" required>
+                    <label for="bill-amount">Amount:</label>
+                    <input type="number" id="bill-amount" name="amount" required>
+                    <button type="submit">Create Bill</button>
+                </form>
+            `;
+
+            // Add event listener to handle form submission
+            document.getElementById('create-bill-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const memberId = document.getElementById('member-id-bill').value;
+                const amount = document.getElementById('bill-amount').value;
+                createBill(memberId, amount);
+            });
+        }
+
+        // Show Assign Fee Package Section
+        function showAssignFeePackage() {
+            // Replace with actual implementation to show Assign Fee Package form
+            document.querySelector('.dashboard-section').innerHTML = `
+                <h2>Assign Fee Package</h2>
+                <form id="assign-fee-package-form">
+                    <label for="member-id-package">Member ID:</label>
+                    <input type="text" id="member-id-package" name="member-id" required>
+                    <label for="package-id">Package ID:</label>
+                    <input type="text" id="package-id" name="package-id" required>
+                    <button type="submit">Assign Package</button>
+                </form>
+            `;
+
+            // Add event listener to handle form submission
+            document.getElementById('assign-fee-package-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const memberId = document.getElementById('member-id-package').value;
+                const packageId = document.getElementById('package-id').value;
+                assignFeePackage(memberId, packageId);
+            });
+        }
+
+        // Show Assign Notification Section
+        function showAssignNotification() {
+            // Replace with actual implementation to show Assign Notification form
+            document.querySelector('.dashboard-section').innerHTML = `
+                <h2>Assign Notification</h2>
+                <form id="assign-notification-form">
+                    <label for="member-id-notification">Member ID:</label>
+                    <input type="text" id="member-id-notification" name="member-id" required>
+                    <label for="notification-message">Notification:</label>
+                    <input type="text" id="notification-message" name="notification" required>
+                    <button type="submit">Assign Notification</button>
+                </form>
+            `;
+
+            // Add event listener to handle form submission
+            document.getElementById('assign-notification-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const memberId = document.getElementById('member-id-notification').value;
+                const notification = document.getElementById('notification-message').value;
+                assignNotification(memberId, notification);
+            });
+        }
+
+        // Show Export Report Section
+        function showExportReport() {
+            // Replace with actual implementation to show Export Report form
+            document.querySelector('.dashboard-section').innerHTML = `
+                <h2>Export Report</h2>
+                <form id="export-report-form">
+                    <label for="report-type">Report Type:</label>
+                    <select id="report-type" name="report-type" required>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                    <button type="submit">Export Report</button>
+                </form>
+            `;
+
+            // Add event listener to handle form submission
+            document.getElementById('export-report-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const reportType = document.getElementById('report-type').value;
+                exportReport(reportType);
+            });
+        }
+
+        // Show Supplement Store Section
+        function showSupplementStore() {
+            // Replace with actual implementation to show Supplement Store
+            document.querySelector('.dashboard-section').innerHTML = `
+                <h2>Supplement Store</h2>
+                <p>Coming soon...</p>
+            `;
+        }
+
+        // Show Diet Details Section
+        function showDietDetails() {
+            // Replace with actual implementation to show Diet Details
+            document.querySelector('.dashboard-section').innerHTML = `
+                <h2>Diet Details</h2>
+                <p>Coming soon...</p>
+            `;
+        }
+
+        // Add Member to Firestore
+        function addMember(name, email, phone) {
+            db.collection('members').add({
+                name: name,
+                email: email,
+                phone: phone,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                alert('Member added successfully!');
+                showAddMember();
+            }).catch(error => {
+                console.error('Error adding member: ', error);
+                alert('Error adding member. Check console for details.');
+            });
+        }
+
+        // Fetch Member Details
+        function fetchMember() {
+            const memberId = document.getElementById('member-id').value;
+            db.collection('members').doc(memberId).get().then(doc => {
+                if (doc.exists) {
+                    const member = doc.data();
+                    document.getElementById('member-details').innerHTML = `
+                        <p>Name: ${member.name}</p>
+                        <p>Email: ${member.email}</p>
+                        <p>Phone: ${member.phone}</p>
+                    `;
+                } else {
+                    alert('No member found with this ID.');
+                }
+            }).catch(error => {
+                console.error('Error fetching member: ', error);
+                alert('Error fetching member. Check console for details.');
+            });
+        }
+
+        // Delete Member from Firestore
+        function deleteMember() {
+            const memberId = document.getElementById('member-id').value;
+            db.collection('members').doc(memberId).delete().then(() => {
+                alert('Member deleted successfully!');
+                showUpdateDeleteMember();
+            }).catch(error => {
+                console.error('Error deleting member: ', error);
+                alert('Error deleting member. Check console for details.');
+            });
+        }
+
+        // Create Bill in Firestore
+        function createBill(memberId, amount) {
+            db.collection('bills').add({
+                memberId: memberId,
+                amount: amount,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                alert('Bill created successfully!');
+                showCreateBills();
+            }).catch(error => {
+                console.error('Error creating bill: ', error);
+                alert('Error creating bill. Check console for details.');
+            });
+        }
+
+        // Assign Fee Package in Firestore
+        function assignFeePackage(memberId, packageId) {
+            db.collection('feePackages').add({
+                memberId: memberId,
+                packageId: packageId,
+                assignedAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                alert('Package assigned successfully!');
+                showAssignFeePackage();
+            }).catch(error => {
+                console.error('Error assigning package: ', error);
+                alert('Error assigning package. Check console for details.');
+            });
+        }
+
+        // Assign Notification in Firestore
+        function assignNotification(memberId, notification) {
+            db.collection('notifications').add({
+                memberId: memberId,
+                notification: notification,
+                assignedAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                alert('Notification assigned successfully!');
+                showAssignNotification();
+            }).catch(error => {
+                console.error('Error assigning notification: ', error);
+                alert('Error assigning notification. Check console for details.');
+            });
+        }
+
+        // Export Report from Firestore
+        function exportReport(reportType) {
+            // Replace with actual implementation to export report
+            alert(`Exporting ${reportType} report...`);
+        }
+    </script>
+</body>
+
+</html>
