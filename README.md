@@ -12,11 +12,11 @@ The GYM Management System is a web application designed to digitize gym receipts
 ## Installation and Setup
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Shagufta-saiyed/gym_management_system.git
+    git clone https://github.com/Shagufta-saiyed/gym-management-system.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd gym_management_system
+    cd gym-management-system
     ```
 3. Open `firebase/firebase-config.js` and replace the placeholder values with your Firebase project configuration.
 
